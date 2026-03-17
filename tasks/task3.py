@@ -9,25 +9,11 @@ for contour in contours:
     x = aprox.ravel()[0]
     y = aprox.ravel()[1]
     
-    if len(aprox) >= min_points:
-        if len(aprox) == 3:
-            cv2.drawContours(image, [aprox], -1, (0,255,0), 3)
-            #cv2.putText(image, 'Rectangle', (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
-            #print(len(aprox))
-    elif len(aprox) == 4:
-        cv2.drawContours(image, [aprox], -1, (255,0,0), 3)
-        #cv2.putText(image, 'Triangle', (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
-        #print(len(aprox))
-    elif len(aprox) == 7:
-        cv2.drawContours(image, [aprox], -1, (0,0,255), 3)
-        #cv2.putText(image, 'Circle', (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 2)
-        #print(len(aprox))
+    if len(aprox) == min_points:
+        cv2.drawContours(image, [aprox], 0, (0, 255, 0), 5)
     else:
-        cv2.drawContours(image, [aprox], -1, (0,255,255), 3)
-            #cv2.putText(image, 'Other', (x,y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,255), 2)
-            #print(len(aprox))
-
-#cv2.namedWindow('Shapes', cv2.WINDOW_NORMAL)
+        print("The shape has more than {} points".format(min_points))
+cv2.namedWindow('Shapes', cv2.WINDOW_NORMAL)
 cv2.imshow('Shapes', image)
 #cv2.namedWindow('Threshold', cv2.WINDOW_NORMAL)
 #cv2.imshow('Threshold', threshold)
